@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html layout:decorate="~{layouts/base}" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<body>
+<div layout:fragment="content">
+
+  <h1 class="page-header">
+    All 80's, All the time!
+  </h1>
+
+
+  <div class="row">
+
+    <div class="table-responsive">
+
+      <form th:action="@{/music}" method="post">
+
+        <table class="table">
+          <thead>
+            <tr>
+              <th></th>
+             <th>Name</th>
+             <th>Release</th>
+             <th>Artist</th>
+            </tr>
+          </thead>
+
+         <tbody>
+           <tr th:each="song : ${songs}">
+             <td>
+               <input type="checkbox" name="songs" th:value="${song.id}" />
+             </td>
+             <td>
+               <span th:text="${song.name}"></span>
+             </td>
+             <td>
+               <span th:text="${song.release.name}"></span>
+             </td>
+             <td>
+               <span th:text="${song.release.artist.name}"></span>
+             </td>
+           </tr>
+        </tbody>
+      </table>
+
+      <p>
+        <input type="submit" class="btn btn-success" value="Submit">
+      </p>
+    </form>
+
+    </div>
+  </div>
+
+</div>
+</body>
+
+</html>

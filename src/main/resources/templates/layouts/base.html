@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security"  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+  <title>RP1 Music</title>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="RP1 80s Radical Music App">
+  <meta name="context-path" th:value="@{/}"/>
+  <link rel="stylesheet" type="text/css" th:href="@{/bundle/bundle.css}" />
+</head>
+
+<body layout:fragment="body">
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container">
+
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">RP1 Music</a>
+    </div>
+    <div class="collapse navbar-collapse" id="main-navbar-collapse-1">
+
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+          <a href="${pageContext.request.contextPath}/admin" sec:authorize="${hasAuthority('Admin')}">Administration</a>
+        </li>
+        <li>
+          <a href="${pageContext.request.contextPath}/signup" sec:authorize="!isAuthenticated()" >Sign Up</a>
+        </li>
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="javascript: document.logoutForm.submit()"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+        </ul>
+      </ul>
+
+    </div>
+  </div>
+</nav>
+
+<form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true">
+  <input hidden="hidden" type="submit" value="Logout"/>
+</form>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-8">
+      <div layout:fragment="content"></div>
+    </div>
+  </div>
+
+  <hr>
+
+  <footer>
+    <div class="row">
+      <div class="col-lg-12">
+        <p>Copyright &copy; RP1 Music 2018</p>
+      </div>
+    </div>
+  </footer>
+
+</div>
+
+<script th:src="@{/bundle/bundle.js}"></script>
+
+</body>
+
+</html>

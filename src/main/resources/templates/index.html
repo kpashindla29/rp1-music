@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html layout:decorate="~{layouts/base}" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<body>
+<div layout:fragment="content">
+
+  <h1 class="page-header">
+    My Library
+  </h1>
+
+  <div class="row">
+    <a href="/music" class="btn btn-primary active">
+      <i class="glyphicon glyphicon-plus" aria-hidden="true"></i> Add
+    </a>
+  </div>
+
+  <div class="row">
+
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+        <tr>
+          <th>Name</th>
+          <th>Release</th>
+          <th>Artist</th>
+
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each="song : ${songs}">
+          <td>
+              <span th:text="${song.name}"></span>
+          </td>
+          <td>
+            <span th:text="${song.release.name}"></span>
+          </td>
+          <td>
+            <span th:text="${song.release.artist.name}"></span>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+
+  <div class="row">
+    <a href="/music" class="btn btn-primary active">
+      <i class="glyphicon glyphicon-plus" aria-hidden="true"></i> Add
+    </a>
+  </div>
+
+</div>
+</body>
+
+</html>
